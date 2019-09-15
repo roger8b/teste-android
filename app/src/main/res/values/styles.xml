@@ -6,12 +6,14 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/montserrat_light</item>
     </style>
 
+    <!--Text Input-->
     <style name="InputTextStyle" parent="Widget.AppCompat.EditText">
         <item name="android:gravity">center</item>
         <item name="android:maxLines">1</item>
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">@dimen/input_text_font_size</item>
     </style>
 
     <style name="NumberInput" parent="InputTextStyle">
@@ -26,16 +28,48 @@
         <item name="android:inputType">date</item>
     </style>
 
-    <style name="Label" parent="Widget.AppCompat.TextView">
-            <item name="android:gravity">center</item>
+    <!--Text View-->
+    <style name="TextViewLabel" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/label_text_font_size</item>
+        <item name="android:gravity">center</item>
         <item name="android:maxLines">1</item>
     </style>
 
-    <style name="HomeButton" parent="Widget.AppCompat.Button">
-        <item name="android:textSize">16sp</item>
+    <style name="TextViewLabelResult" parent="Widget.AppCompat.TextView">
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">@dimen/label_result_text_font_size</item>
+    </style>
+
+    <!--Buttons-->
+    <style name="HomeSimulateButton" parent="Widget.AppCompat.Button">
         <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">@color/home_button_font</item>
+        <item name="android:textSize">@dimen/button_label_font_size</item>
+        <item name="android:textColor">@color/home_simulate_button_font</item>
         <item name="android:background">@drawable/home_simulate_button_shape</item>
+    </style>
+
+    <style name="ResultSimulateButton" parent="Widget.AppCompat.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/button_label_font_size</item>
+        <item name="android:textColor">@color/result_simulate_button_font</item>
+        <item name="android:background">@drawable/result_simulate_result_button_shape</item>
+    </style>
+
+    <!--Result Adapter-->
+    <style name="ResultHeader" parent="AppTheme">
+        <item name="android:layout_marginTop">@dimen/adapter_result_header_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/adapter_result_header_margin_bottom</item>
+    </style>
+
+    <style name="ResultBody" parent="AppTheme">
+        <item name="android:layout_marginTop">@dimen/adapter_result_body_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/adapter_result_body_margin_bottom</item>
+    </style>
+
+    <style name="ResultFooter" parent="AppTheme">
+        <item name="android:layout_marginTop">@dimen/adapter_result_footer_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/adapter_result_footer_margin_bottom</item>
     </style>
 
 </resources>

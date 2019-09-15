@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/labelInvestedAmount"
+        style="@style/TextViewLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
+        android:labelFor="@id/inputInvestedAmount"
+        android:text="@string/simulate_form_amount_label"
+        app:layout_constraintBottom_toTopOf="@id/inputInvestedAmount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <EditText
+        android:id="@+id/inputInvestedAmount"
+        style="@style/NumberInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/default_space_between_components"
+        android:hint="@string/simulate_form_input_invested_amount"
+        android:importantForAutofill="no"
+        app:layout_constraintBottom_toTopOf="@id/labelMaturity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelInvestedAmount" />
+
+    <TextView
+        android:id="@+id/labelMaturity"
+        style="@style/TextViewLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
+        android:labelFor="@id/inputMaturity"
+        android:text="@string/simulate_form_maturity_label"
+        app:layout_constraintBottom_toTopOf="@id/inputMaturity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputInvestedAmount" />
+
+    <EditText
+        android:id="@+id/inputMaturity"
+        style="@style/DateInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/default_space_between_components"
+        android:hint="@string/simulate_form_hint_input_maturity"
+        android:imeOptions="actionNext"
+        android:importantForAutofill="no"
+        app:layout_constraintBottom_toTopOf="@id/labelRate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelMaturity" />
+
+
+    <TextView
+        android:id="@+id/labelRate"
+        style="@style/TextViewLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
+        android:labelFor="@id/inputRate"
+        android:text="@string/simulate_form_hate_label"
+        app:layout_constraintBottom_toTopOf="@id/inputRate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputMaturity" />
+
+    <EditText
+        android:id="@+id/inputRate"
+        style="@style/NumberInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginBottom="@dimen/default_space_between_components"
+        android:hint="@string/simulate_form_hint_input_rate"
+        android:importantForAutofill="no"
+        app:layout_constraintBottom_toTopOf="@id/buttonSimulate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelRate" />
+
+    <Button
+        android:id="@+id/buttonSimulate"
+        style="@style/HomeSimulateButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
+        android:text="@string/simulate_form_button_simulate_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputRate" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

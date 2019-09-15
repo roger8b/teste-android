@@ -4,7 +4,13 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="home_button_font">#FFFFFF</color>
-    <color name="home_button_shape">#9A9C9E</color>
-    <color name="home_button_shape_pressed">#E69A9C9E</color>
+    <color name="home_simulate_button_font">#FFFFFF</color>
+    <color name="home_simulate_button_shape">#9A9C9E</color>
+    <color name="home_simulate_button_shape_pressed">#E69A9C9E</color>
+
+    <color name="result_simulate_button_font">#FFFFFF</color>
+    <color name="result_simulate_button_shape">#00c8b3</color>
+    <color name="result_simulate_button_shape_pressed">#E600C8B3</color>
+
+
 </resources>

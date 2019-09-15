@@ -2,14 +2,18 @@
     <string name="app_name">Calc</string>
 
     <!--    Home-->
-    <string name="home_invested_amount_label">Quanto você gostaria de aplicar?*</string>
-    <string name="home_hint_input_invested_amount">R$</string>
+    <string name="simulate_form_amount_label">Quanto você gostaria de aplicar?*</string>
+    <string name="simulate_form_input_invested_amount">R$</string>
 
-    <string name="home_maturity_label">Qual a data de vencimento do investimento?*</string>
-    <string name="home_hint_input_maturity">dia/mês/ano</string>
+    <string name="simulate_form_maturity_label">Qual a data de vencimento do investimento?*</string>
+    <string name="simulate_form_hint_input_maturity">dia/mês/ano</string>
 
-    <string name="home_hate_label">Qual o percentual do CDI do investimento?*</string>
-    <string name="home_hint_input_rate">100%</string>
+    <string name="simulate_form_hate_label">Qual o percentual do CDI do investimento?*</string>
+    <string name="simulate_form_hint_input_rate">100%</string>
 
-    <string name="home_button_simulate_label">Simular</string>
+    <string name="simulate_form_button_simulate_label">Simular</string>
+
+    <string name="result_simulate_button_label">Simular novamente</string>
+    <string name="result_gross_amount_label">Resultado da simulação</string>
+    <string name="title_activity_result">ResultActivity</string>
 </resources>

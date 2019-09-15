@@ -1,38 +1,52 @@
 package br.com.easynvest.calc.ui.home
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import br.com.easynvest.calc.R
-import br.com.easynvest.calc.utils.EditTextMask
-import br.com.easynvest.calc.utils.UtilsDatePicker
-import kotlinx.android.synthetic.main.activity_home.*
+import br.com.easynvest.calc.base.BaseActivity
+import br.com.easynvest.calc.ui.result.ResultFragment
+import br.com.easynvest.calc.ui.simulate.SimulateFormFragment
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity(), ResultFragment.Listener, SimulateFormFragment.Listener {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-
-        initInvestedAmount()
-        initMaturityInput()
+    private val simulateFormFragment: SimulateFormFragment by lazy {
+        SimulateFormFragment.newInstance()
     }
 
-    private fun initInvestedAmount() {
-        inputInvestedAmount
-            .addTextChangedListener(
-                EditTextMask.money(inputInvestedAmount)
-            )
+    private val resultFragment: ResultFragment by lazy {
+        ResultFragment.newInstance()
     }
 
-    private fun initMaturityInput() {
-        inputMaturity.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                UtilsDatePicker.showDatePicker(inputMaturity, this)
-            }
-        }
+    override fun getContentView(): Int = R.layout.activity_home
 
-        inputMaturity.setOnClickListener {
-            UtilsDatePicker.showDatePicker(inputMaturity, this)
+    override fun onInitViews() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.homeContainer, simulateFormFragment)
+            .addToBackStack(SIMULATE_FRAGMENT)
+            .commit()
+    }
+
+    override fun onClickButtonNewSimulation() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.homeContainer, simulateFormFragment)
+            .addToBackStack(SIMULATE_FRAGMENT)
+            .commit()
+    }
+
+    override fun onClickButtonSimulate() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.homeContainer, resultFragment)
+            .addToBackStack(RESULT_FRAGMENT)
+            .commit()
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 1) {
+            supportFragmentManager.popBackStack()
+        } else {
+            finish()
         }
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 }
+
+const val SIMULATE_FRAGMENT = "simulate"
+const val RESULT_FRAGMENT = "result"

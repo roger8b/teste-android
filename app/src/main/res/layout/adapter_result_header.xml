@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ResultHeader"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/grossAmountLabel"
+        style="@style/TextViewLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/result_gross_amount_label"
+        app:layout_constraintBottom_toTopOf="@id/grossAmount"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/grossAmount"
+        style="@style/TextViewLabelResult"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/result_space_between_components"
+        android:layout_marginBottom="@dimen/result_space_between_components"
+        app:layout_constraintBottom_toTopOf="@id/annualGrossRateProfitLabel"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/grossAmountLabel"
+        tools:text="R$ 1.088,69" />
+
+    <TextView
+        android:id="@+id/annualGrossRateProfitLabel"
+        style="@style/TextViewLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/grossAmount"
+        tools:text="Rendimento total de R$88,69" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
