@@ -17,7 +17,7 @@ object EditTextMask {
                 if (sequence.toString() != current) {
                     editText.removeTextChangedListener(listener)
 
-                    val cleanString = sequence.toString().replace(Regex("[R$,.]"), "")
+                    val cleanString = sequence.toString().replace(Regex("[R$,.\\s]"), "")
                     val parsed = BigDecimal(cleanString).setScale(2, BigDecimal.ROUND_FLOOR)
                         .divide(BigDecimal(100), BigDecimal.ROUND_FLOOR)
 
