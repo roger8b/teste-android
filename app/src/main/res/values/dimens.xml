@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Margin-->
     <dimen name="margin_default">18dp</dimen>
+
+    <!--Space-->
     <dimen name="default_space_between_components">48dp</dimen>
+    <dimen name="result_space_between_components">8dp</dimen>
+
+    <!--Fonts-->
+    <dimen name="button_label_font_size">16sp</dimen>
+    <dimen name="input_text_font_size">28sp</dimen>
+    <dimen name="label_text_font_size">16sp</dimen>
+    <dimen name="label_result_text_font_size">36sp</dimen>
+
+    <dimen name="adapter_result_body_margin_top">4dp</dimen>
+    <dimen name="adapter_result_body_margin_bottom">4dp</dimen>
+
+    <dimen name="adapter_result_footer_margin_top">36dp</dimen>
+    <dimen name="adapter_result_footer_margin_bottom">16dp</dimen>
+
+    <dimen name="adapter_result_header_margin_top">0dp</dimen>
+    <dimen name="adapter_result_header_margin_bottom">48dp</dimen>
 </resources>
