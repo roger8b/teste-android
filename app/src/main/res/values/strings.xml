@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Calc</string>
+
+    <!--    Home-->
+    <string name="home_invested_amount_label">Quanto você gostaria de aplicar?*</string>
+    <string name="home_hint_input_invested_amount">R$</string>
+
+    <string name="home_maturity_label">Qual a data de vencimento do investimento?*</string>
+    <string name="home_hint_input_maturity">dia/mês/ano</string>
+
+    <string name="home_hate_label">Qual o percentual do CDI do investimento?*</string>
+    <string name="home_hint_input_rate">100%</string>
+
+    <string name="home_button_simulate_label">Simular</string>
 </resources>

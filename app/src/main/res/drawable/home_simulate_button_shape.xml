@@ -1,0 +1,24 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="30dp" />
+            <solid android:color="@color/home_button_shape_pressed" />
+        </shape>
+    </item>
+
+    <item android:state_pressed="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="30dp" />
+            <solid android:color="@color/home_button_shape" />
+        </shape>
+    </item>
+
+    <item android:state_window_focused="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="30dp" />
+            <solid android:color="@color/home_button_shape" />
+        </shape>
+    </item>
+
+</selector>

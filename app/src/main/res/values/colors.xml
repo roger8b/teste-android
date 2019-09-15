@@ -3,4 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="home_button_font">#FFFFFF</color>
+    <color name="home_button_shape">#9A9C9E</color>
+    <color name="home_button_shape_pressed">#E69A9C9E</color>
 </resources>
