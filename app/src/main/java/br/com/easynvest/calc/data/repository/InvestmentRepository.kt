@@ -25,13 +25,13 @@ class InvestmentRepository constructor(
         return responseMapper.mapSimulateResponseToListResult(simulateResponse)
     }
 
-    private fun convertSimulateRequestToMap(simulateRequest: SimulateRequest): Map<String, Any> {
+    private fun convertSimulateRequestToMap(simulateRequest: SimulateRequest): Map<String, String> {
 
         return mapOf(
             Pair(InvestmentField.INVESTEDAMOUNT.value, simulateRequest.investedAmount),
             Pair(InvestmentField.INDEX.value, simulateRequest.index),
             Pair(InvestmentField.RATE.value, simulateRequest.rate),
-            Pair(InvestmentField.ISTAXFREE.value, simulateRequest.isTaxFree)
+            Pair(InvestmentField.ISTAXFREE.value, simulateRequest.isTaxFree.toString())
         )
     }
 }

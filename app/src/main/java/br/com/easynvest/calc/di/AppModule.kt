@@ -4,13 +4,18 @@ import br.com.easynvest.calc.data.api.ApiService
 import br.com.easynvest.calc.data.repository.InvestmentRepository
 import br.com.easynvest.calc.data.repository.InvestmentReposytoryContract
 import br.com.easynvest.calc.data.repository.ResponseMapper
+import br.com.easynvest.calc.viewmodel.investmentsimulate.InvestmentSimulateViewModel
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
 val appModule = module {
     single<InvestmentReposytoryContract> { InvestmentRepository(get(), get()) }
-
     factory { ResponseMapper() }
+}
+
+val viewModel = module {
+    viewModel { InvestmentSimulateViewModel(get()) }
 }
 
 val mNetworkModules = module {

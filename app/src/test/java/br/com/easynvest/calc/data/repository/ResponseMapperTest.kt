@@ -74,13 +74,13 @@ class ResponseMapperTest {
         val testObserver: Single<List<BaseResult>> =
             mapper.mapSimulateResponseToListResult(simulateResponse)
 
-        testObserver.test()
+        val values = testObserver.test()
             .assertNoErrors()
             .assertValue {
                 val result = gson.toJson(it)
                 val expected = gson.toJson(validResultList)
                 result == expected
-            }
+            }.values()
     }
 
     @Test

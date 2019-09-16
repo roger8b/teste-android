@@ -59,13 +59,13 @@ val validResultList = listOf(
     ResultBody(InvestmentField.GROSSAMOUNT.name, "R$ 60.528,20"),
     ResultBody(InvestmentField.GROSSAMOUNTPROFIT.name, "R$ 28.205,20"),
     ResultBody(InvestmentField.TAXESAMOUNT.name, "R$ 4.230,78"),
-    ResultBody(InvestmentField.NETAMOUNT.name, "R$ 23.974,4215.0%"),
+    ResultBody(InvestmentField.NETAMOUNT.name, "R$ 23.974,42[15%]"),
     ResultBody(InvestmentField.MATURITYDATE.name, "03/03/2023"),
     ResultBody(InvestmentField.MATURITYTOTALDAYS.name, "1981"),
-    ResultBody(InvestmentField.MONTHLYGROSSRATEPROFIT.name, "87.56%"),
-    ResultBody(InvestmentField.RATE.name, "123.0%"),
-    ResultBody(InvestmentField.ANNUALGROSSRATEPROFIT.name, "87.56%"),
-    ResultBody(InvestmentField.RATEPROFIT.name, "9.5512%"),
+    ResultBody(InvestmentField.MONTHLYGROSSRATEPROFIT.name, "87,56%"),
+    ResultBody(InvestmentField.RATE.name, "123%"),
+    ResultBody(InvestmentField.ANNUALGROSSRATEPROFIT.name, "87,56%"),
+    ResultBody(InvestmentField.RATEPROFIT.name, "9,55%"),
     ResultFooter()
 )
 

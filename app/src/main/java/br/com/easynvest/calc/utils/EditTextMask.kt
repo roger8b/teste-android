@@ -12,9 +12,12 @@ object EditTextMask {
     fun money(editText: EditText): TextWatcher {
         var listener: TextWatcher? = null
         listener = object : TextWatcher {
+
             var current: String = ""
+
             override fun onTextChanged(sequence: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (sequence.toString() != current) {
+
                     editText.removeTextChangedListener(listener)
 
                     val cleanString = sequence.toString().replace(Regex("[R$,.\\s]"), "")

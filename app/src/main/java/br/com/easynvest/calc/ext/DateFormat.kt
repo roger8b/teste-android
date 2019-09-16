@@ -10,6 +10,12 @@ fun String.dateFormatDDMMYYYY() = parseDate(
     SimpleDateFormat("dd/MM/yyyy", Locale("pt", "BR"))
 )
 
+fun String.dateFormatYYYMMDD() = parseDate(
+    this,
+    SimpleDateFormat("dd/MM/yyyy", Locale("pt", "BR")),
+    SimpleDateFormat("yyyy-MM-dd", Locale.US)
+)
+
 private fun parseDate(
     inputDateString: String, input: SimpleDateFormat, output: SimpleDateFormat
 ): String? =

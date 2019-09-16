@@ -16,4 +16,7 @@
     <string name="result_simulate_button_label">Simular novamente</string>
     <string name="result_gross_amount_label">Resultado da simulação</string>
     <string name="title_activity_result">ResultActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

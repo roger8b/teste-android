@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.adapter_result_body.view.*
 import kotlinx.android.synthetic.main.adapter_result_footer.view.*
 import kotlinx.android.synthetic.main.adapter_result_header.view.*
 
-class ResultAdapter(private val list: ArrayList<BaseResult>, private val listener: (() -> Unit)) :
+class ResultAdapter(private val list: List<BaseResult>, private val listener: (() -> Unit)) :
     RecyclerView.Adapter<ResultAdapter.BaseViewHolder>() {
 
     override fun getItemViewType(position: Int): Int =

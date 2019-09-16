@@ -9,6 +9,7 @@ import br.com.easynvest.calc.R
 import br.com.easynvest.calc.base.BaseFragment
 import br.com.easynvest.calc.utils.EditTextMask
 import br.com.easynvest.calc.utils.UtilsDatePicker
+import com.jakewharton.rxbinding2.widget.RxTextView
 import kotlinx.android.synthetic.main.fragment_simulate_form.*
 
 class SimulateFormFragment : BaseFragment<SimulateFormFragment.Listener>() {
@@ -52,10 +53,32 @@ class SimulateFormFragment : BaseFragment<SimulateFormFragment.Listener>() {
     }
 
     private fun initSimulate() {
+
+        val investedAmount = getInvestedAmount()
+        val maturityDate = getMaturity()
+        val rate = getRate()
+        val index = "CDI"
+        val isTaxFree = false
+
+        val subs = RxTextView.text(inputInvestedAmount)
+
+
         buttonSimulate.setOnClickListener {
-            listener?.onClickButtonSimulate()
+            listener?.onClickButtonSimulate(
+                investedAmount,
+                maturityDate,
+                rate,
+                index,
+                isTaxFree
+            )
         }
     }
+
+    private fun getRate() = inputRate.text.toString()
+
+    private fun getMaturity() = inputMaturity.text.toString()
+
+    private fun getInvestedAmount() = inputInvestedAmount.text.toString()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -67,6 +90,12 @@ class SimulateFormFragment : BaseFragment<SimulateFormFragment.Listener>() {
     }
 
     interface Listener {
-        fun onClickButtonSimulate()
+        fun onClickButtonSimulate(
+            investedAmount: String,
+            maturityDate: String,
+            rate: String,
+            index: String,
+            taxFree: Boolean
+        )
     }
 }

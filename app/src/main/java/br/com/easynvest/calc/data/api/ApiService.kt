@@ -8,5 +8,5 @@ import retrofit2.http.QueryMap
 interface ApiService {
 
     @GET("simulate")
-    fun getNews(@QueryMap options: Map<String, Any>): Single<SimulateResponse>
+    fun getNews(@QueryMap options: Map<String, String>): Single<SimulateResponse>
 }

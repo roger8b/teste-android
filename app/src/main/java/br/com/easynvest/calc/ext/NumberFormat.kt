@@ -12,4 +12,11 @@ fun Double.formatNumberAndAddPercentSignal(): String {
 fun Double.brazilianMoneyFormat(): String =
     NumberFormat.getCurrencyInstance(Locale("pt", "BR")).format(this)
 
+fun String.removeBranzilianMoneyFormat(): String {
+    val stringValue = this.replace(Regex("[R$,.\\s]"), "")
+    return (stringValue.toDouble() / 100).toString()
+}
+
+fun String.removePercentFormat(): String = this.replace(Regex("[%,.\\s]"), "")
+
 
