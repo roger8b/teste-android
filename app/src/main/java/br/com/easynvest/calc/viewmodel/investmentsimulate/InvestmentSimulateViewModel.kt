@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import br.com.easynvest.calc.data.model.SimulateRequest
 import br.com.easynvest.calc.data.repository.InvestmentReposytoryContract
 import br.com.easynvest.calc.entity.BaseResult
-import br.com.easynvest.calc.ext.dateFormatYYYMMDD
-import br.com.easynvest.calc.ext.removeBranzilianMoneyFormat
 import br.com.easynvest.calc.utils.ScreenState
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -26,14 +24,16 @@ class InvestmentSimulateViewModel(
     fun fetchSimulation(
         investedAmount: String,
         maturityDate: String,
-        rate: String
+        rate: String,
+        index: String,
+        taxFree: Boolean
     ) {
         val simulateRequest = SimulateRequest(
-            investedAmount.removeBranzilianMoneyFormat(),
-            "CDI",
+            investedAmount,
+            index,
             rate,
-            false,
-            maturityDate.dateFormatYYYMMDD()?: ""
+            taxFree,
+            maturityDate
         )
 
         repository.simulate(simulateRequest)
