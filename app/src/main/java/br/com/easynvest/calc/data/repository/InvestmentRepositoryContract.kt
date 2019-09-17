@@ -5,7 +5,7 @@ import br.com.easynvest.calc.data.model.SimulateRequest
 import br.com.easynvest.calc.entity.BaseResult
 import io.reactivex.Single
 
-interface InvestmentReposytoryContract {
+interface InvestmentRepositoryContract {
 
     fun simulate(simulateRequest : SimulateRequest): Single<List<BaseResult>>
 }
