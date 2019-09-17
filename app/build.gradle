@@ -31,52 +31,50 @@ android {
     }
 }
 
-def espresso_version = "3.2.0"
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation "androidx.core:core-ktx:$androidx_core_version"
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
+    implementation "androidx.legacy:legacy-support-v4:$androidx_legacy_support_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$androidx_lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_lifecycle_version"
+    implementation "androidx.constraintlayout:constraintlayout:$androidx_constraint_layout_version"
+    implementation "com.google.android.material:material:$android_material_version"
 
     //Koin
-    implementation 'org.koin:koin-android:2.0.1'
-    implementation 'org.koin:koin-android-viewmodel:2.0.1'
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 
     //Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     //Stetho
-    implementation 'com.facebook.stetho:stetho:1.5.1'
-    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+    implementation "com.facebook.stetho:stetho:$stetho_version"
+    implementation "com.facebook.stetho:stetho-okhttp3:$stetho_version"
 
     //Rx
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
-    implementation 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.1.1'
+    implementation "io.reactivex.rxjava2:rxandroid:$androidrx_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$rxbinding2_version"
 
     //Timber
-    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation "com.jakewharton.timber:timber:$timber_version"
 
     // Test
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:2.25.1'
-    testImplementation 'androidx.test:core:1.2.0'
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+
     testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-    testImplementation 'android.arch.core:core-testing:1.1.1'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test:rules:1.2.0'
-    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:3.6.0'
+    testImplementation "android.arch.core:core-testing:$android_arch_version"
+    testImplementation "androidx.test:core:$androidx_test_version"
+    androidTestImplementation "androidx.test:runner:$androidx_test_version"
+    androidTestImplementation "androidx.test:rules:$androidx_test_version"
 
     // Espresso dependencies
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
@@ -84,8 +82,6 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
     androidTestImplementation "androidx.test.espresso:espresso-accessibility:$espresso_version"
     androidTestImplementation "androidx.test.espresso:espresso-web:$espresso_version"
-
-
 
 
 }
