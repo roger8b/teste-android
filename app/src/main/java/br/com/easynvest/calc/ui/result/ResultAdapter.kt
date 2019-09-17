@@ -4,6 +4,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.easynvest.calc.R
+import br.com.easynvest.calc.data.model.InvestmentField.ANNUALNETRATEPROFIT
+import br.com.easynvest.calc.data.model.InvestmentField.GROSSAMOUNT
+import br.com.easynvest.calc.data.model.InvestmentField.GROSSAMOUNTPROFIT
+import br.com.easynvest.calc.data.model.InvestmentField.INVESTEDAMOUNT
+import br.com.easynvest.calc.data.model.InvestmentField.MATURITYDATE
+import br.com.easynvest.calc.data.model.InvestmentField.MATURITYTOTALDAYS
+import br.com.easynvest.calc.data.model.InvestmentField.MONTHLYGROSSRATEPROFIT
+import br.com.easynvest.calc.data.model.InvestmentField.NETAMOUNT
+import br.com.easynvest.calc.data.model.InvestmentField.RATE
+import br.com.easynvest.calc.data.model.InvestmentField.RATEPROFIT
+import br.com.easynvest.calc.data.model.InvestmentField.TAXESAMOUNT
 import br.com.easynvest.calc.entity.BaseResult
 import br.com.easynvest.calc.entity.ResultBody
 import br.com.easynvest.calc.entity.ResultFooter
@@ -21,7 +32,7 @@ class ResultAdapter(private val list: List<BaseResult>, private val listener: ((
             is ResultHeader -> HEADER
             is ResultBody -> BODY
             is ResultFooter -> FOOTER
-            else -> BLANK_LINE
+            else -> 0
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder =
@@ -42,15 +53,31 @@ class ResultAdapter(private val list: List<BaseResult>, private val listener: ((
         override fun bind(baseResult: BaseResult, listener: () -> Unit) = with(itemView) {
             val result = baseResult as ResultHeader
             grossAmount.text = result.grossAmount
-            annualGrossRateProfitLabel.text = result.annualGrossRateProfit
+            annualGrossRateProfitLabel.text = context.getString(
+                R.string.result_adapter_header_annualGrossRateProfit,
+                result.annualGrossRateProfit
+            )
         }
     }
 
     class BodyViewHolder(itemView: View) : BaseViewHolder(itemView) {
         override fun bind(baseResult: BaseResult, listener: () -> Unit) = with(itemView) {
             val result = baseResult as ResultBody
-            name.text = result.name
             value.text = result.value
+            name.text = when (result.name) {
+                INVESTEDAMOUNT -> context.getString(R.string.result_adapter_investedAmount_label)
+                GROSSAMOUNT -> context.getString(R.string.result_adapter_grossAmount_label)
+                GROSSAMOUNTPROFIT -> context.getString(R.string.result_adapter_grossAmountProfit_label)
+                TAXESAMOUNT -> context.getString(R.string.result_adapter_taxesAmount_label)
+                NETAMOUNT -> context.getString(R.string.result_adapter_net_amount_label)
+                MATURITYDATE -> context.getString(R.string.result_adapter_maturityDate_label)
+                MATURITYTOTALDAYS -> context.getString(R.string.result_adapter_maturityTotalDays_label)
+                MONTHLYGROSSRATEPROFIT -> context.getString(R.string.result_adapter_monthlyGrossRateProfit_label)
+                RATE -> context.getString(R.string.result_adapter_rate_label)
+                ANNUALNETRATEPROFIT -> context.getString(R.string.result_adapter_annual_net_rate_profit_label)
+                RATEPROFIT -> context.getString(R.string.result_adapter_rate_profit_label)
+                else -> ""
+            }
         }
     }
 
@@ -68,7 +95,6 @@ class ResultAdapter(private val list: List<BaseResult>, private val listener: ((
     }
 }
 
-const val HEADER = 0
-const val BODY = 1
+const val HEADER = 1
+const val BODY = 2
 const val FOOTER = 3
-const val BLANK_LINE = 4
