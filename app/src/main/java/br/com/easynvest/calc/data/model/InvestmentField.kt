@@ -16,20 +16,11 @@ enum class InvestmentField( val value : String) {
     @SerializedName("grossAmountProfit")
     GROSSAMOUNTPROFIT("grossAmountProfit"),
 
-    @SerializedName("netAmountProfit")
-    NETAMOUNTPROFIT("netAmountProfit"),
-
     @SerializedName("annualGrossRateProfit")
     ANNUALGROSSRATEPROFIT("annualGrossRateProfit"),
 
     @SerializedName("monthlyGrossRateProfit")
     MONTHLYGROSSRATEPROFIT("monthlyGrossRateProfit"),
-
-    @SerializedName("dailyGrossRateProfit")
-    DAILYGROSSRATEPROFIT("dailyGrossRateProfit"),
-
-    @SerializedName("taxesRate")
-    TAXESRATE("taxesRate"),
 
     @SerializedName("rateProfit")
     RATEPROFIT("rateProfit"),
@@ -40,14 +31,8 @@ enum class InvestmentField( val value : String) {
     @SerializedName("investedAmount")
     INVESTEDAMOUNT("investedAmount"),
 
-    @SerializedName("yearlyInterestRate")
-    YEARLYINTERESTRATE("yearlyInterestRate"),
-
     @SerializedName("maturityTotalDays")
     MATURITYTOTALDAYS("maturityTotalDays"),
-
-    @SerializedName("maturityBusinessDays")
-    MATURITYBUSINESSDAYS("maturityBusinessDays"),
 
     @SerializedName("maturityDate")
     MATURITYDATE("maturityDate"),
@@ -60,5 +45,8 @@ enum class InvestmentField( val value : String) {
 
     @SerializedName("index")
     INDEX("index"),
+
+    @SerializedName("blank_line")
+    BLANK_LINE("blan_line"),
 
 }
