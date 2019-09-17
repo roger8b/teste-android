@@ -30,46 +30,41 @@ class ResponseMapper {
 
         val investedAmount =
             simulateResponse.investmentParameter.investedAmount.brazilianMoneyFormat()
-        list.add(ResultBody(InvestmentField.INVESTEDAMOUNT.name, investedAmount))
+        list.add(ResultBody(InvestmentField.INVESTEDAMOUNT, investedAmount))
 
         val grossAmount =
             simulateResponse.grossAmount.brazilianMoneyFormat()
-        list.add(ResultBody(InvestmentField.GROSSAMOUNT.name, grossAmount))
+        list.add(ResultBody(InvestmentField.GROSSAMOUNT, grossAmount))
 
         val grossAmountProfit =
             simulateResponse.grossAmountProfit.brazilianMoneyFormat()
-        list.add(ResultBody(InvestmentField.GROSSAMOUNTPROFIT.name, grossAmountProfit))
+        list.add(ResultBody(InvestmentField.GROSSAMOUNTPROFIT, grossAmountProfit))
 
-        val taxesAmount =
-            simulateResponse.taxesAmount.brazilianMoneyFormat()
-        list.add(ResultBody(InvestmentField.TAXESAMOUNT.name, taxesAmount))
-
-        val netAmountProfit = simulateResponse.netAmountProfit.brazilianMoneyFormat()
+        val taxesAmount = simulateResponse.taxesAmount.brazilianMoneyFormat()
         val taxesRate = simulateResponse.taxesRate.formatNumberAndAddPercentSignal()
-        list.add(ResultBody(InvestmentField.NETAMOUNT.name, "$netAmountProfit[$taxesRate]"))
+        list.add(ResultBody(InvestmentField.TAXESAMOUNT, "$taxesAmount[$taxesRate]"))
+
+        val netAmount = simulateResponse.netAmount.brazilianMoneyFormat()
+        list.add(ResultBody(InvestmentField.NETAMOUNT, netAmount))
 
         val maturityDate = simulateResponse.investmentParameter.maturityDate.dateFormatDDMMYYYY()
         if (maturityDate == null) throw RuntimeException("Error on parse date $maturityDate")
+        list.add(ResultBody(InvestmentField.MATURITYDATE, maturityDate))
 
-        list.add(ResultBody(InvestmentField.MATURITYDATE.name, maturityDate))
+        val maturityTotalDays = simulateResponse.investmentParameter.maturityTotalDays.toString()
+        list.add(ResultBody(InvestmentField.MATURITYTOTALDAYS, maturityTotalDays))
 
-        val maturityTotalDays =
-            simulateResponse.investmentParameter.maturityTotalDays.toString()
-        list.add(ResultBody(InvestmentField.MATURITYTOTALDAYS.name, maturityTotalDays))
-
-        val monthlyGrossRateProfit =
-            simulateResponse.annualGrossRateProfit.formatNumberAndAddPercentSignal()
-        list.add(ResultBody(InvestmentField.MONTHLYGROSSRATEPROFIT.name, monthlyGrossRateProfit))
+        val monthlyGrossRateProfit = simulateResponse.monthlyGrossRateProfit.formatNumberAndAddPercentSignal()
+        list.add(ResultBody(InvestmentField.MONTHLYGROSSRATEPROFIT, monthlyGrossRateProfit))
 
         val rate = simulateResponse.investmentParameter.rate.formatNumberAndAddPercentSignal()
-        list.add(ResultBody(InvestmentField.RATE.name, rate))
+        list.add(ResultBody(InvestmentField.RATE, rate))
 
-        val annualGrossRateProfit =
-            simulateResponse.annualGrossRateProfit.formatNumberAndAddPercentSignal()
-        list.add(ResultBody(InvestmentField.ANNUALGROSSRATEPROFIT.name, annualGrossRateProfit))
+        val annualNetRateProfit = simulateResponse.annualNetRateProfit.formatNumberAndAddPercentSignal()
+        list.add(ResultBody(InvestmentField.ANNUALNETRATEPROFIT, annualNetRateProfit))
 
         val rateProfit = simulateResponse.rateProfit.formatNumberAndAddPercentSignal()
-        list.add(ResultBody(InvestmentField.RATEPROFIT.name, rateProfit))
+        list.add(ResultBody(InvestmentField.RATEPROFIT, rateProfit))
 
         return list
     }
