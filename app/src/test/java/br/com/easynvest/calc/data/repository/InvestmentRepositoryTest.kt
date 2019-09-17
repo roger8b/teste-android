@@ -66,9 +66,5 @@ class InvestmentRepositoryTest {
             .assertError {
                 it is RuntimeException
             }
-       /* testObserver.test()
-            .assertValue{
-                it == validResultList
-            }*/
     }
 }
