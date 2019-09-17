@@ -56,17 +56,17 @@ val validInvestmentSimulateRequest =
 
 val validResultList = listOf(
     ResultHeader("R$ 60.528,20", "R$ 87,56"),
-    ResultBody(InvestmentField.INVESTEDAMOUNT.name, "R$ 32.323,00"),
-    ResultBody(InvestmentField.GROSSAMOUNT.name, "R$ 60.528,20"),
-    ResultBody(InvestmentField.GROSSAMOUNTPROFIT.name, "R$ 28.205,20"),
-    ResultBody(InvestmentField.TAXESAMOUNT.name, "R$ 4.230,78"),
-    ResultBody(InvestmentField.NETAMOUNT.name, "R$ 23.974,42[15%]"),
-    ResultBody(InvestmentField.MATURITYDATE.name, "03/03/2023"),
-    ResultBody(InvestmentField.MATURITYTOTALDAYS.name, "1981"),
-    ResultBody(InvestmentField.MONTHLYGROSSRATEPROFIT.name, "87,56%"),
-    ResultBody(InvestmentField.RATE.name, "123%"),
-    ResultBody(InvestmentField.ANNUALGROSSRATEPROFIT.name, "87,56%"),
-    ResultBody(InvestmentField.RATEPROFIT.name, "9,55%"),
+    ResultBody(InvestmentField.INVESTEDAMOUNT, "R$ 32.323,00"),
+    ResultBody(InvestmentField.GROSSAMOUNT, "R$ 60.528,20"),
+    ResultBody(InvestmentField.GROSSAMOUNTPROFIT, "R$ 28.205,20"),
+    ResultBody(InvestmentField.TAXESAMOUNT, "R$ 4.230,78[15%]"),
+    ResultBody(InvestmentField.NETAMOUNT, "R$ 56.297,78"),
+    ResultBody(InvestmentField.MATURITYDATE, "03/03/2023"),
+    ResultBody(InvestmentField.MATURITYTOTALDAYS, "1981"),
+    ResultBody(InvestmentField.MONTHLYGROSSRATEPROFIT, "0,76%"),
+    ResultBody(InvestmentField.RATE, "123%"),
+    ResultBody(InvestmentField.ANNUALNETRATEPROFIT, "87,56%"),
+    ResultBody(InvestmentField.RATEPROFIT, "9,55%"),
     ResultFooter()
 )
 
