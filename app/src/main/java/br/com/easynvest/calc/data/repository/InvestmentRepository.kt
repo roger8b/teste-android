@@ -12,7 +12,7 @@ class InvestmentRepository constructor(
     private val apiService: ApiService,
     private val responseMapper: ResponseMapper
 
-) : InvestmentReposytoryContract {
+) : InvestmentRepositoryContract {
 
     override fun simulate(simulateRequest: SimulateRequest): Single<List<BaseResult>> {
         return apiService.getNews(convertSimulateRequestToMap(simulateRequest))

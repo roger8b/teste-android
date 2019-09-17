@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.easynvest.calc.base.BaseSchedulerProvider
 import br.com.easynvest.calc.data.model.SimulateRequest
-import br.com.easynvest.calc.data.repository.InvestmentReposytoryContract
 import br.com.easynvest.calc.entity.BaseResult
+import br.com.easynvest.calc.usecases.InvestmentSimulateUseCaseContract
 import br.com.easynvest.calc.utils.ScreenState
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 
 class InvestmentSimulateViewModel(
-    private val repository: InvestmentReposytoryContract,
+    private val useCase: InvestmentSimulateUseCaseContract,
     private val schedulers: BaseSchedulerProvider
 ) : ViewModel() {
 
@@ -29,7 +29,7 @@ class InvestmentSimulateViewModel(
         taxFree: Boolean
     ) {
         val simulateRequest = SimulateRequest(investedAmount, index, rate, taxFree, maturityDate)
-        repository.simulate(simulateRequest)
+        useCase.simulate(simulateRequest)
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
             .subscribe(object : SingleObserver<List<BaseResult>> {

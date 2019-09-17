@@ -4,15 +4,18 @@ import br.com.easynvest.calc.base.BaseSchedulerProvider
 import br.com.easynvest.calc.base.SchedulerProvider
 import br.com.easynvest.calc.data.api.ApiService
 import br.com.easynvest.calc.data.repository.InvestmentRepository
-import br.com.easynvest.calc.data.repository.InvestmentReposytoryContract
+import br.com.easynvest.calc.data.repository.InvestmentRepositoryContract
 import br.com.easynvest.calc.data.repository.ResponseMapper
+import br.com.easynvest.calc.usecases.InvestmentSimulateUseCase
+import br.com.easynvest.calc.usecases.InvestmentSimulateUseCaseContract
 import br.com.easynvest.calc.viewmodel.investmentsimulate.InvestmentSimulateViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
 val appModule = module {
-    single<InvestmentReposytoryContract> { InvestmentRepository(get(), get()) }
+    single<InvestmentSimulateUseCaseContract> { InvestmentSimulateUseCase(get()) }
+    single<InvestmentRepositoryContract> { InvestmentRepository(get(), get()) }
     single<BaseSchedulerProvider> { SchedulerProvider() }
     factory { ResponseMapper() }
 }

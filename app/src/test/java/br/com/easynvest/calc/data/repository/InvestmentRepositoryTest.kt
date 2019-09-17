@@ -19,7 +19,7 @@ class InvestmentRepositoryTest {
     @Mock lateinit var apiService: ApiService
     @Mock lateinit var mapper: ResponseMapper
 
-    private lateinit var repository: InvestmentReposytoryContract
+    private lateinit var repository: InvestmentRepositoryContract
 
     @Before
     fun setup() {
