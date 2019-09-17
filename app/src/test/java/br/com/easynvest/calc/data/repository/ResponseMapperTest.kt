@@ -1,7 +1,6 @@
 package br.com.easynvest.calc.data.repository
 
 import br.com.easynvest.calc.annualGrossRateProfit
-import br.com.easynvest.calc.annualNetRateProfit
 import br.com.easynvest.calc.dailyGrossRateProfit
 import br.com.easynvest.calc.data.model.InvestmentParameter
 import br.com.easynvest.calc.data.model.SimulateResponse
@@ -11,7 +10,7 @@ import br.com.easynvest.calc.grossAmountProfit
 import br.com.easynvest.calc.investedAmount
 import br.com.easynvest.calc.isTaxFree
 import br.com.easynvest.calc.maturityBusinessDays
-import br.com.easynvest.calc.maturityDate
+import br.com.easynvest.calc.maturityDateResult
 import br.com.easynvest.calc.maturityTotalDays
 import br.com.easynvest.calc.monthlyGrossRateProfit
 import br.com.easynvest.calc.netAmount
@@ -20,8 +19,6 @@ import br.com.easynvest.calc.rate
 import br.com.easynvest.calc.rateProfit
 import br.com.easynvest.calc.taxesAmount
 import br.com.easynvest.calc.taxesRate
-import br.com.easynvest.calc.validInvestmentParameter
-import br.com.easynvest.calc.validInvestmentSimulateResponse
 import br.com.easynvest.calc.validResultList
 import br.com.easynvest.calc.yearlyInterestRate
 import com.google.gson.Gson
@@ -32,7 +29,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations.initMocks
 import java.lang.RuntimeException
-import java.text.ParseException
 
 class ResponseMapperTest {
 
@@ -50,7 +46,7 @@ class ResponseMapperTest {
         `when`(investmentParameter.yearlyInterestRate).thenReturn(yearlyInterestRate)
         `when`(investmentParameter.maturityTotalDays).thenReturn(maturityTotalDays)
         `when`(investmentParameter.maturityBusinessDays).thenReturn(maturityBusinessDays)
-        `when`(investmentParameter.maturityDate).thenReturn(maturityDate)
+        `when`(investmentParameter.maturityDate).thenReturn(maturityDateResult)
         `when`(investmentParameter.rate).thenReturn(rate)
         `when`(investmentParameter.isTaxFree).thenReturn(isTaxFree)
 

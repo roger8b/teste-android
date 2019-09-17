@@ -1,5 +1,7 @@
 package br.com.easynvest.calc.di
 
+import br.com.easynvest.calc.base.BaseSchedulerProvider
+import br.com.easynvest.calc.base.SchedulerProvider
 import br.com.easynvest.calc.data.api.ApiService
 import br.com.easynvest.calc.data.repository.InvestmentRepository
 import br.com.easynvest.calc.data.repository.InvestmentReposytoryContract
@@ -11,11 +13,12 @@ import retrofit2.Retrofit
 
 val appModule = module {
     single<InvestmentReposytoryContract> { InvestmentRepository(get(), get()) }
+    single<BaseSchedulerProvider> { SchedulerProvider() }
     factory { ResponseMapper() }
 }
 
 val viewModel = module {
-    viewModel { InvestmentSimulateViewModel(get()) }
+    viewModel { InvestmentSimulateViewModel(get(), get()) }
 }
 
 val mNetworkModules = module {

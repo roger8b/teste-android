@@ -3,17 +3,17 @@ package br.com.easynvest.calc.viewmodel.investmentsimulate
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import br.com.easynvest.calc.base.BaseSchedulerProvider
 import br.com.easynvest.calc.data.model.SimulateRequest
 import br.com.easynvest.calc.data.repository.InvestmentReposytoryContract
 import br.com.easynvest.calc.entity.BaseResult
 import br.com.easynvest.calc.utils.ScreenState
 import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 
 class InvestmentSimulateViewModel(
-    private val repository: InvestmentReposytoryContract
+    private val repository: InvestmentReposytoryContract,
+    private val schedulers: BaseSchedulerProvider
 ) : ViewModel() {
 
     private val _state: MutableLiveData<ScreenState<InvestmentSimulateState>> = MutableLiveData()
@@ -28,17 +28,10 @@ class InvestmentSimulateViewModel(
         index: String,
         taxFree: Boolean
     ) {
-        val simulateRequest = SimulateRequest(
-            investedAmount,
-            index,
-            rate,
-            taxFree,
-            maturityDate
-        )
-
+        val simulateRequest = SimulateRequest(investedAmount, index, rate, taxFree, maturityDate)
         repository.simulate(simulateRequest)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(schedulers.io())
+            .observeOn(schedulers.ui())
             .subscribe(object : SingleObserver<List<BaseResult>> {
                 override fun onSuccess(t: List<BaseResult>) {
                     _state.value = ScreenState.Render(InvestmentSimulateState.ShowResult(t))

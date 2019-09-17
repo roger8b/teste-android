@@ -24,7 +24,8 @@ const val investedAmount: Double = 32323.0
 const val yearlyInterestRate: Double = 9.5512
 const val maturityTotalDays: Int = 1981
 const val maturityBusinessDays: Int = 1409
-const val maturityDate: String = "2023-03-03T00:00:00"
+const val maturityDateResult: String = "2023-03-03T00:00:00"
+const val maturityDateRequest: String = "2023-03-03"
 const val rate: Double = 123.0
 const val isTaxFree: Boolean = false
 
@@ -32,7 +33,7 @@ const val index: String = "CDI"
 
 val validInvestmentParameter = InvestmentParameter(
     investedAmount, yearlyInterestRate,
-    maturityTotalDays, maturityBusinessDays, maturityDate, rate, isTaxFree
+    maturityTotalDays, maturityBusinessDays, maturityDateResult, rate, isTaxFree
 )
 
 val validInvestmentSimulateResponse = SimulateResponse(
@@ -51,7 +52,7 @@ val validInvestmentSimulateResponse = SimulateResponse(
 )
 
 val validInvestmentSimulateRequest =
-    SimulateRequest(investedAmount.toString(), index, rate.toString(), isTaxFree, maturityDate)
+    SimulateRequest(investedAmount.toString(), index, rate.toString(), isTaxFree, maturityDateResult)
 
 val validResultList = listOf(
     ResultHeader("R$ 60.528,20", "R$ 87,56"),
