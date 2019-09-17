@@ -31,6 +31,7 @@ class InvestmentRepository constructor(
             Pair(InvestmentField.INVESTEDAMOUNT.value, simulateRequest.investedAmount),
             Pair(InvestmentField.INDEX.value, simulateRequest.index),
             Pair(InvestmentField.RATE.value, simulateRequest.rate),
+            Pair(InvestmentField.MATURITYDATE.value,simulateRequest.maturityDate),
             Pair(InvestmentField.ISTAXFREE.value, simulateRequest.isTaxFree.toString())
         )
     }
