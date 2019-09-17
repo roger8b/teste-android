@@ -1,6 +1,7 @@
 package br.com.easynvest.calc.ui.home
 
-import android.util.Log
+import android.app.AlertDialog
+import androidx.fragment.app.Fragment
 import br.com.easynvest.calc.R
 import br.com.easynvest.calc.base.BaseActivity
 import br.com.easynvest.calc.entity.BaseResult
@@ -16,18 +17,13 @@ class HomeActivity : BaseActivity(), ResultFragment.Listener, SimulateFormFragme
 
     private val viewModel: InvestmentSimulateViewModel by viewModel()
 
-    private val simulateFormFragment: SimulateFormFragment by lazy {
-        SimulateFormFragment.newInstance()
-    }
-
     override fun getContentView(): Int = R.layout.activity_home
 
     override fun onInitViews() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.homeContainer, simulateFormFragment)
+            .add(R.id.homeContainer, SimulateFormFragment.newInstance())
             .addToBackStack(SIMULATE_FRAGMENT)
             .commit()
-
         viewModel.state.observe(::getLifecycle, ::updateUI)
     }
 
@@ -47,20 +43,24 @@ class HomeActivity : BaseActivity(), ResultFragment.Listener, SimulateFormFragme
     }
 
     private fun showErrorMessage(error: String) {
-        Log.e("Home", error)
+        val dialog = AlertDialog.Builder(this)
+        dialog.setMessage(getString(R.string.alert_dialog_error_message))
+            .setNegativeButton(getString(R.string.alert_dialog_error_button_ok))
+            { _, _ -> dialog.setCancelable(true) }
+            .create()
+            .show()
     }
 
     private fun showSimulateResult(result: List<BaseResult>) {
+        supportFragmentManager.popBackStack()
         val resultFragment = ResultFragment.newInstance()
         resultFragment.fetchResult(result)
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.homeContainer, resultFragment)
-            .addToBackStack(RESULT_FRAGMENT)
-            .commit()
+        showFragment(resultFragment, RESULT_FRAGMENT)
     }
 
     override fun onClickButtonNewSimulation() {
         supportFragmentManager.popBackStack()
+        showFragment(SimulateFormFragment.newInstance(), SIMULATE_FRAGMENT)
     }
 
     override fun onClickButtonSimulate(
@@ -70,7 +70,7 @@ class HomeActivity : BaseActivity(), ResultFragment.Listener, SimulateFormFragme
         index: String,
         taxFree: Boolean
     ) {
-        viewModel.fetchSimulation(investedAmount, maturityDate, rate)
+        viewModel.fetchSimulation(investedAmount, maturityDate, rate, index, taxFree)
     }
 
     override fun onBackPressed() {
@@ -80,6 +80,13 @@ class HomeActivity : BaseActivity(), ResultFragment.Listener, SimulateFormFragme
             finish()
         }
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+    }
+
+    private fun showFragment(fragment: Fragment, tag: String) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.homeContainer, fragment)
+            .addToBackStack(tag)
+            .commit()
     }
 }
 
