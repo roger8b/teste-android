@@ -19,6 +19,7 @@ import br.com.easynvest.calc.rate
 import br.com.easynvest.calc.rateProfit
 import br.com.easynvest.calc.taxesAmount
 import br.com.easynvest.calc.taxesRate
+import br.com.easynvest.calc.utils.Logs
 import br.com.easynvest.calc.validResultList
 import br.com.easynvest.calc.yearlyInterestRate
 import com.google.gson.Gson
@@ -34,13 +35,14 @@ class ResponseMapperTest {
 
     @Mock lateinit var simulateResponse: SimulateResponse
     @Mock lateinit var investmentParameter : InvestmentParameter
+    @Mock lateinit var logs: Logs
 
     private lateinit var mapper: ResponseMapper
 
     @Before
     fun setup() {
         initMocks(this)
-        mapper = ResponseMapper()
+        mapper = ResponseMapper(logs)
 
         `when`(investmentParameter.investedAmount).thenReturn(investedAmount)
         `when`(investmentParameter.yearlyInterestRate).thenReturn(yearlyInterestRate)

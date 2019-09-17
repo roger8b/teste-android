@@ -8,6 +8,7 @@ import br.com.easynvest.calc.data.repository.InvestmentRepositoryContract
 import br.com.easynvest.calc.data.repository.ResponseMapper
 import br.com.easynvest.calc.usecases.InvestmentSimulateUseCase
 import br.com.easynvest.calc.usecases.InvestmentSimulateUseCaseContract
+import br.com.easynvest.calc.utils.Logs
 import br.com.easynvest.calc.viewmodel.investmentsimulate.InvestmentSimulateViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -15,13 +16,14 @@ import retrofit2.Retrofit
 
 val appModule = module {
     single<InvestmentSimulateUseCaseContract> { InvestmentSimulateUseCase(get()) }
-    single<InvestmentRepositoryContract> { InvestmentRepository(get(), get()) }
+    single<InvestmentRepositoryContract> { InvestmentRepository(get(), get(), get()) }
     single<BaseSchedulerProvider> { SchedulerProvider() }
-    factory { ResponseMapper() }
+    factory { ResponseMapper(get()) }
+    single { Logs() }
 }
 
 val viewModel = module {
-    viewModel { InvestmentSimulateViewModel(get(), get()) }
+    viewModel { InvestmentSimulateViewModel(get(), get(), get()) }
 }
 
 val mNetworkModules = module {

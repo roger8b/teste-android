@@ -7,6 +7,12 @@ import br.com.easynvest.calc.di.viewModel
 import com.facebook.stetho.Stetho
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
+import timber.log.Timber.DebugTree
+import timber.log.Timber
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class App : Application() {
 
@@ -27,5 +33,7 @@ class App : Application() {
         if (BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this)
         }
+
+        Timber.plant(DebugTree())
     }
 }

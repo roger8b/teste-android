@@ -14,6 +14,7 @@ import br.com.easynvest.calc.isTaxFree
 import br.com.easynvest.calc.maturityDateRequest
 import br.com.easynvest.calc.rate
 import br.com.easynvest.calc.usecases.InvestmentSimulateUseCase
+import br.com.easynvest.calc.utils.Logs
 import br.com.easynvest.calc.utils.ScreenState
 import br.com.easynvest.calc.validResultList
 import io.reactivex.Single
@@ -29,15 +30,20 @@ import kotlin.test.assertEquals
 
 class InvestmentSimulateViewModelTest {
 
-    @get:Rule val rule = InstantTaskExecutorRule()
+    @get:Rule
+    val rule = InstantTaskExecutorRule()
 
     @Mock
     lateinit var useCase: InvestmentSimulateUseCase
 
     @Mock
     lateinit var viewModel: InvestmentSimulateViewModel
+
     @Mock
     lateinit var observer: Observer<ScreenState<InvestmentSimulateState>>
+
+    @Mock
+    lateinit var logs: Logs
 
     @Mock
     lateinit var lifecycleOwner: LifecycleOwner
@@ -48,7 +54,7 @@ class InvestmentSimulateViewModelTest {
     fun setup() {
         initMocks(this)
         schedulerProvider = TrampolineSchedulerProvider()
-        viewModel = InvestmentSimulateViewModel(useCase, schedulerProvider)
+        viewModel = InvestmentSimulateViewModel(useCase, schedulerProvider, logs)
         lifecycle = LifecycleRegistry(lifecycleOwner)
         viewModel.state.observeForever(observer)
     }
@@ -65,7 +71,6 @@ class InvestmentSimulateViewModelTest {
         )
         verify(observer, times(1)).onChanged(ScreenState.ShowLoading)
         verify(observer, times(1)).onChanged(ScreenState.HideLoading)
-
     }
 
     @Test
@@ -80,7 +85,7 @@ class InvestmentSimulateViewModelTest {
         )
 
         val value = viewModel.state.value
-        if(value is ScreenState.Render){
+        if (value is ScreenState.Render) {
             assertEquals(value.renderState, InvestmentSimulateState.ShowResult(validResultList))
         }
     }
@@ -97,10 +102,9 @@ class InvestmentSimulateViewModelTest {
         )
 
         val value = viewModel.state.value
-        if(value is ScreenState.Render){
-            assertEquals(value.renderState, InvestmentSimulateState.ShowError(""))
+        if (value is ScreenState.Render) {
+            assertEquals(value.renderState, InvestmentSimulateState.ShowError)
         }
         verify(observer, times(1)).onChanged(ScreenState.HideLoading)
-
     }
 }

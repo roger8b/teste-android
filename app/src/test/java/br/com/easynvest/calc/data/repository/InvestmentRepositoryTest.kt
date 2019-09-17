@@ -3,6 +3,7 @@ package br.com.easynvest.calc.data.repository
 import br.com.easynvest.calc.data.api.ApiService
 import br.com.easynvest.calc.entity.BaseResult
 import br.com.easynvest.calc.ext.anyOfType
+import br.com.easynvest.calc.utils.Logs
 import br.com.easynvest.calc.validInvestmentSimulateRequest
 import br.com.easynvest.calc.validInvestmentSimulateResponse
 import br.com.easynvest.calc.validResultList
@@ -18,13 +19,14 @@ class InvestmentRepositoryTest {
 
     @Mock lateinit var apiService: ApiService
     @Mock lateinit var mapper: ResponseMapper
+    @Mock lateinit var logs: Logs
 
     private lateinit var repository: InvestmentRepositoryContract
 
     @Before
     fun setup() {
         initMocks(this)
-        repository = InvestmentRepository(apiService, mapper)
+        repository = InvestmentRepository(apiService, mapper, logs)
     }
 
     @Test

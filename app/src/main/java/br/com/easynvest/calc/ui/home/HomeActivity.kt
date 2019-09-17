@@ -7,15 +7,20 @@ import br.com.easynvest.calc.base.BaseActivity
 import br.com.easynvest.calc.entity.BaseResult
 import br.com.easynvest.calc.ui.result.ResultFragment
 import br.com.easynvest.calc.ui.simulate.SimulateFormFragment
+import br.com.easynvest.calc.utils.Logs
 import br.com.easynvest.calc.utils.ScreenState
 import br.com.easynvest.calc.viewmodel.investmentsimulate.InvestmentSimulateState
 import br.com.easynvest.calc.viewmodel.investmentsimulate.InvestmentSimulateViewModel
 import kotlinx.android.synthetic.main.activity_home.*
+import org.koin.android.ext.android.get
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseActivity(), ResultFragment.Listener, SimulateFormFragment.Listener {
 
     private val viewModel: InvestmentSimulateViewModel by viewModel()
+
+    private val logs : Logs by inject()
 
     override fun getContentView(): Int = R.layout.activity_home
 
@@ -38,11 +43,11 @@ class HomeActivity : BaseActivity(), ResultFragment.Listener, SimulateFormFragme
     private fun processRenderState(renderState: InvestmentSimulateState) {
         when (renderState) {
             is InvestmentSimulateState.ShowResult -> showSimulateResult(renderState.result)
-            is InvestmentSimulateState.ShowError -> showErrorMessage(renderState.error)
+            is InvestmentSimulateState.ShowError -> showErrorMessage()
         }
     }
 
-    private fun showErrorMessage(error: String) {
+    private fun showErrorMessage() {
         val dialog = AlertDialog.Builder(this)
         dialog.setMessage(getString(R.string.alert_dialog_error_message))
             .setNegativeButton(getString(R.string.alert_dialog_error_button_ok))
