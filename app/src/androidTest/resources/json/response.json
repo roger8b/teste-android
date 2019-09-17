@@ -1,0 +1,22 @@
+{
+  "investmentParameter": {
+    "investedAmount": 1000.0,
+    "yearlyInterestRate": 5.7049,
+    "maturityTotalDays": 335,
+    "maturityBusinessDays": 233,
+    "maturityDate": "2020-08-17T00:00:00",
+    "rate": 123.0,
+    "isTaxFree": false
+  },
+  "grossAmount": 1065.13,
+  "taxesAmount": 13.03,
+  "netAmount": 1052.10,
+  "grossAmountProfit": 65.13,
+  "netAmountProfit": 52.10,
+  "annualGrossRateProfit": 6.51,
+  "monthlyGrossRateProfit": 0.46,
+  "dailyGrossRateProfit": 0.000270830240942426,
+  "taxesRate": 20.0,
+  "rateProfit": 5.7049,
+  "annualNetRateProfit": 5.21
+}
