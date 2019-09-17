@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.easynvest.calc.R
 import br.com.easynvest.calc.base.BaseFragment
+import br.com.easynvest.calc.data.model.InvestmentField
 import br.com.easynvest.calc.entity.BaseResult
+import br.com.easynvest.calc.entity.ResultBody
 import kotlinx.android.synthetic.main.fragment_result.*
 
 class ResultFragment : BaseFragment<ResultFragment.Listener>() {
@@ -33,7 +35,7 @@ class ResultFragment : BaseFragment<ResultFragment.Listener>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        resultAdapter = ResultAdapter(resultList) {
+        resultAdapter = ResultAdapter(addBlankLines(resultList)) {
             listener?.onClickButtonNewSimulation()
         }
 
@@ -55,5 +57,19 @@ class ResultFragment : BaseFragment<ResultFragment.Listener>() {
 
     interface Listener {
         fun onClickButtonNewSimulation()
+    }
+
+    private fun addBlankLines(list: List<BaseResult>): MutableList<BaseResult> {
+        val processList = mutableListOf<BaseResult>()
+        list.forEach {
+            if (it is ResultBody) {
+                if (it.name == InvestmentField.NETAMOUNT) {
+                    processList.add(ResultBody(InvestmentField.BLANK_LINE, ""))
+                } else {
+                    processList.add(it)
+                }
+            } else processList.add(it)
+        }
+        return processList
     }
 }
