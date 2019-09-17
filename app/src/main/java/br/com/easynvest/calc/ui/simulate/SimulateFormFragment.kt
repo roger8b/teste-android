@@ -7,10 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.easynvest.calc.R
 import br.com.easynvest.calc.base.BaseFragment
-import br.com.easynvest.calc.utils.EditTextMask
+import br.com.easynvest.calc.ext.addMoneyMask
+import br.com.easynvest.calc.ext.addPercentMask
+import br.com.easynvest.calc.ext.dateFormatYYYMMDD
+import br.com.easynvest.calc.ext.removeBranzilianMoneyFormat
+import br.com.easynvest.calc.ext.removePercentFormat
 import br.com.easynvest.calc.utils.UtilsDatePicker
 import com.jakewharton.rxbinding2.widget.RxTextView
+import io.reactivex.Observable
+import io.reactivex.functions.Function3
 import kotlinx.android.synthetic.main.fragment_simulate_form.*
+import java.util.Locale
 
 class SimulateFormFragment : BaseFragment<SimulateFormFragment.Listener>() {
 
@@ -30,14 +37,20 @@ class SimulateFormFragment : BaseFragment<SimulateFormFragment.Listener>() {
 
         initInvestedAmount()
         initMaturityInput()
+        initRateInput()
         initSimulate()
     }
 
+    override fun onPause() {
+        super.onPause()
+        compositeDisposable.dispose()
+    }
+
     private fun initInvestedAmount() {
-        inputInvestedAmount
-            .addTextChangedListener(
-                EditTextMask.money(inputInvestedAmount)
-            )
+        val addMoneyMask = inputInvestedAmount.addMoneyMask(Locale("pt", "BR"))
+        if (addMoneyMask != null) {
+            compositeDisposable.add(addMoneyMask)
+        }
     }
 
     private fun initMaturityInput() {
@@ -52,25 +65,58 @@ class SimulateFormFragment : BaseFragment<SimulateFormFragment.Listener>() {
         }
     }
 
-    private fun initSimulate() {
+    private fun initRateInput() {
+        val addPercentMask = inputRate.addPercentMask()
+        if (addPercentMask != null) {
+            compositeDisposable.add(addPercentMask)
+        }
+    }
 
-        val investedAmount = getInvestedAmount()
-        val maturityDate = getMaturity()
-        val rate = getRate()
+    private fun initSimulate() {
+        initObservingFormFill()
+        buttonSimulate.setOnClickListener {
+            extractFormData()
+        }
+    }
+
+    private fun extractFormData() {
+        val investedAmount = getInvestedAmount().removeBranzilianMoneyFormat()
+        val maturityDate = getMaturity().dateFormatYYYMMDD() ?: ""
+        val rate = getRate().removePercentFormat()
         val index = "CDI"
         val isTaxFree = false
 
-        val subs = RxTextView.text(inputInvestedAmount)
+        listener?.onClickButtonSimulate(
+            investedAmount,
+            maturityDate,
+            rate,
+            index,
+            isTaxFree
+        )
+    }
 
+    private fun initObservingFormFill() {
+        val investedAmountObservable =
+            RxTextView.textChanges(inputInvestedAmount).map { it.isNotEmpty() }
+        val maturityObservable = RxTextView.textChanges(inputMaturity).map { it.isNotEmpty() }
+        val rateObservable = RxTextView.textChanges(inputRate).map { it.isNotEmpty() }
 
-        buttonSimulate.setOnClickListener {
-            listener?.onClickButtonSimulate(
-                investedAmount,
-                maturityDate,
-                rate,
-                index,
-                isTaxFree
-            )
+        val isSignInEnabled: Observable<Boolean> = Observable.combineLatest(
+            investedAmountObservable,
+            maturityObservable,
+            rateObservable,
+            Function3 { t1, t2, t3 -> t1 && t2 && t3 })
+        compositeDisposable.add(
+            isSignInEnabled.subscribe { enableButton(it) }
+        )
+    }
+
+    private fun enableButton(isEnable: Boolean) {
+        if(buttonSimulate != null)
+        if (isEnable) {
+            setVisibilityVisible(buttonSimulate)
+        } else {
+            setVisibilityGone(buttonSimulate)
         }
     }
 
