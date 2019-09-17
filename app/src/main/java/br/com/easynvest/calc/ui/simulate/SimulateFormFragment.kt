@@ -80,9 +80,9 @@ class SimulateFormFragment : BaseFragment<SimulateFormFragment.Listener>() {
     }
 
     private fun extractFormData() {
-        val investedAmount = getInvestedAmount().removeBranzilianMoneyFormat()
-        val maturityDate = getMaturity().dateFormatYYYMMDD() ?: ""
-        val rate = getRate().removePercentFormat()
+        val investedAmount = getInvestedAmount()
+        val maturityDate = getMaturity()
+        val rate = getRate()
         val index = "CDI"
         val isTaxFree = false
 
